@@ -1,0 +1,74 @@
+﻿@model List<WeatherApp.DataModel.Models.Weather>
+
+@if (Model.Count > 1)
+{
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Т</th>
+                <th>Относительная влажность воздуха</th>
+                <th>td</th>
+                <th>Атм.давление мм рт.ст</th>
+                <th>Направление ветра</th>
+                <th>Скорость ветра</th>
+                <th>Облачность</th>
+                <th>h</th>
+                <th>vw</th>
+                <th>Погодные условия</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var weather in Model)
+        {
+            <tr>
+                <td>@weather.TimeMeasuring</td>
+                <td>@weather.Temperature</td>
+                <td>@weather.Humidity</td>
+                <td>@weather.Td</td>
+                <td>@weather.Atmosphere</td>
+                <td>@weather.WeatherDirectionWind</td>
+                <td>@weather.SpeedWind</td>
+                <td>@weather.OverCast</td>
+                <td>@weather.H</td>
+                <td>@weather.VW</td>
+                <td>@weather.WeatherCondition</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@if (ViewBag.TotalPages > 1)
+{
+<ul class="pagination">
+    @if (ViewBag.CurrentPage > 1)
+    {
+        <li>
+            <a href="~/">First</a>
+        </li>
+        <li>
+            <a href="~/?page=@(ViewBag.CurrentPage - 1)">Previous</a>
+        </li>
+    }
+    else
+    {
+        <li class="disabled">
+            <a href="~/">First</a>
+        </li>
+        <li class="disabled">
+            <a href="~/?page=@(ViewBag.CurrentPage - 1)">Previous</a>
+        </li>
+    }
+
+    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+    {
+        <li>
+            <a href="~/?page=@(ViewBag.CurrentPage + 1)">Next</a>
+        </li>
+        <li>
+            <a href="~/?page=@(ViewBag.TotalPages)">Last</a>
+        </li>
+    }
+</ul>
+}			
